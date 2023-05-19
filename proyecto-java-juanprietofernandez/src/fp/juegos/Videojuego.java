@@ -2,9 +2,33 @@ package fp.juegos;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
+
 import fpUtiles.Checkers;
 
 public class Videojuego {
+	@Override
+	public int hashCode() {
+		return Objects.hash(eu_sales, genre, global_sales, jp_sales, na_sales, name, other_sales, platform, publisher,
+				rank, sales, year);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Videojuego other = (Videojuego) obj;
+		return Objects.equals(eu_sales, other.eu_sales) && genre == other.genre
+				&& Objects.equals(global_sales, other.global_sales) && Objects.equals(jp_sales, other.jp_sales)
+				&& Objects.equals(na_sales, other.na_sales) && Objects.equals(name, other.name)
+				&& Objects.equals(other_sales, other.other_sales) && Objects.equals(platform, other.platform)
+				&& Objects.equals(publisher, other.publisher) && Objects.equals(rank, other.rank)
+				&& Objects.equals(sales, other.sales) && Objects.equals(year, other.year);
+	}
 	private Integer rank;
 	private String name, publisher, platform;
 	private LocalDate year;
@@ -64,11 +88,13 @@ public class Videojuego {
 			}
 		return res;
 	}
-	// return unn string con el nombre, desarrolladora, consola y genero del viedojuego
+	@Override
 	public String toString() {
-		return "Juego [nombre=" + name + ", desarrolladora=" + publisher + ", consola=" +
-		platform + ", genero= " + genre + "]";
-		 }
+		return "Videojuego [rank=" + rank + ", name=" + name + ", publisher=" + publisher + ", platform=" + platform
+				+ ", year=" + year + ", genre=" + genre + ", na_sales=" + na_sales + ", eu_sales=" + eu_sales
+				+ ", jp_sales=" + jp_sales + ", other_sales=" + other_sales + ", global_sales=" + global_sales
+				+ ", sales=" + sales + "]";
+	}
 	
 	// return La diferencia de ventas entre EEUU y japon
 	public String getDiferenciaJaponEEUU() {
@@ -178,10 +204,11 @@ public class Videojuego {
 	public void setSales(List<Float> sales) {
 		this.sales = sales;
 	}
-		
-	
-	 
-	
+	public static Stream<Videojuego> stream() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 	
